@@ -1,0 +1,43 @@
+{
+    "name": "jiny/profile",
+    "description": "profile for JinyPHP",
+    "keywords": [
+        "jinyPHP",
+        "framwork",
+        "profile"
+    ],
+    "homepage": "http://www.jinyphp.com",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hojinlee",
+            "email": "infohojin@gmail.com",
+            "homepage": "http://www.jinyphp.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jiny\\Profile\\":"src/"
+        },
+        "files" : [
+            "src/Helpers/Helper.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jiny\\Profile\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jiny\\Profile\\JinyProfileServiceProvider"
+            ]
+        }
+    }
+}
