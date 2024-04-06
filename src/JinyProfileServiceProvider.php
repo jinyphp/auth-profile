@@ -27,14 +27,31 @@ class JinyProfileServiceProvider extends ServiceProvider
         ]);
 
 
+        // account layout
+        Blade::component($this->package.'::layouts.'.'master', 'account-layout');
+        Blade::component($this->package.'::partials.'.'sidebar', 'account-sidebar');
+
+        // 사용자 프로파일 컴포넌트
+        Blade::component($this->package.'::components.'.'profile.form_picture', 'profile-form-picture');
+        Blade::component($this->package.'::components.'.'profile.form_infomation', 'profile-form-infomation');
+        Blade::component($this->package.'::components.'.'profile.form_address', 'profile-form-address');
+
+
     }
 
     public function register()
     {
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
-       
-            
+
+
+            Livewire::component('account-avata', \Jiny\Profile\Http\Livewire\AvataLivewire::class);
+            Livewire::component('account-profile', \Jiny\Profile\Http\Livewire\AccountProfile::class);
+            Livewire::component('account-address', \Jiny\Profile\Http\Livewire\AccountAddress::class);
+            Livewire::component('account-email', \Jiny\Profile\Http\Livewire\AccountEmail::class);
+
+            Livewire::component('account-social', \Jiny\Profile\Http\Livewire\AccountSocial::class);
+
         });
 
     }
