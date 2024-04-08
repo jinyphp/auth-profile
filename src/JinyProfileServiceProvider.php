@@ -37,6 +37,9 @@ class JinyProfileServiceProvider extends ServiceProvider
         Blade::component($this->package.'::components.'.'profile.form_address', 'profile-form-address');
 
 
+        Blade::component($this->package.'::components.'.'browser_sessions', 'profile-browser_sessions');
+        Blade::component($this->package.'::components.'.'two-factor-authentication', 'profile-two-factor-authentication');
+        Blade::component($this->package.'::components.'.'confirms-password', 'confirms-password');
     }
 
     public function register()
@@ -51,6 +54,12 @@ class JinyProfileServiceProvider extends ServiceProvider
             Livewire::component('account-email', \Jiny\Profile\Http\Livewire\AccountEmail::class);
 
             Livewire::component('account-social', \Jiny\Profile\Http\Livewire\AccountSocial::class);
+
+            Livewire::component('profile.logout-other-browser-sessions-form',
+                \Jiny\Profile\Http\Livewire\LogoutOtherBrowserSessionsForm::class);
+
+            Livewire::component('profile.two-factor-authentication-form',
+                \Jiny\Profile\Http\Livewire\TwoFactorAuthenticationForm::class);
 
         });
 

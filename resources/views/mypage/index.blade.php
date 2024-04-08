@@ -77,6 +77,19 @@
                     </div>
                 </div>
 
+                {{-- 브라우저 세션--}}
+                <x-profile-browser_sessions>
+                    <div class="text-muted font-14">
+                        {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
+                    </div>
+                    @livewire('profile.logout-other-browser-sessions-form')
+                </x-profile-browser_sessions>
+
+                {{-- 2FA 인증--}}
+                <x-profile-two-factor-authentication>
+                    @livewire('profile.two-factor-authentication-form')
+                </x-profile-two-factor-authentication>
+
                 <!--  -->
                 <x-profile-form-picture>
 
@@ -94,14 +107,6 @@
 
 
 
-                {{-- 브라우저 세션--}}
-                {{-- <x-profile-browser_sessions>
-                    <div class="text-muted font-14">
-                        {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
-                    </div>
-                    @livewire('profile.logout-other-browser-sessions-form')
-                </x-profile-browser_sessions> --}}
-
                 {{-- 회원 삭제 --}}
                 {{-- <x-profile-delete-user>
                     <div class="max-w-xl text-sm text-gray-600">
@@ -110,10 +115,7 @@
                     @livewire('profile.delete-user-form')
                 </x-profile-delete-user> --}}
 
-                {{-- 2FA 인증--}}
-                {{-- <x-profile-two-factor-authentication>
-                    @livewire('profile.two-factor-authentication-form')
-                </x-profile-two-factor-authentication> --}}
+
 
                 {{-- <x-profile-update-infomation>
                     @livewire('profile.update-profile-information-form')
