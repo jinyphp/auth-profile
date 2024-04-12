@@ -13,7 +13,7 @@
                                     <li class="breadcrumb-item active">Profile</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Profile Settings</h4>
+                            <h4 class="page-title">Profile</h4>
                         </div>
                     </div>
                 </div>
@@ -21,16 +21,10 @@
 
 
             <div class="container p-0">
-                <!-- 로그인 회원정보 -->
-                @includeIf('jiny-profile::home.status')
-            </div>
-
-
-            <div class="container p-0">
 
                 <div class="row">
                     <div class="col-md-4 col-xl-3">
-                        @includeIf('jiny-profile::home.sidemenu')
+                        @includeIf('jiny-profile::accounts.sidemenu')
 
                     </div>
 

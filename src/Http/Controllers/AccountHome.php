@@ -4,6 +4,7 @@ namespace Jiny\Profile\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AccountHome extends Controller
 {
@@ -30,8 +31,12 @@ class AccountHome extends Controller
         }
 
         // 3. 패키지 기본 mypage
-        return view('accounts::home');
+        return view('jiny-profile::accounts.index',[
+            'user' => Auth::user()
+        ]);
     }
+
+
 
     public function profile()
     {

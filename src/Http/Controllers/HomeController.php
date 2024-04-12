@@ -56,7 +56,8 @@ class HomeController extends Controller
         $viewfile = "jiny-profile::home.index";
 
         return view($viewfile,[
-            'message' => $message
+            'message' => $message,
+            'user' => Auth::user()
         ]);
     }
 

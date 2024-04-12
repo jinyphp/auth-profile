@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class Profile extends Controller
+class Logout extends Controller
 {
     public $view = [];
 
@@ -31,7 +31,7 @@ class Profile extends Controller
         }
 
         // 3. 패키지 기본 mypage
-        return view('jiny-profile::accounts.index');
+        return view('jiny-profile::accounts.logout');
     }
 
 
