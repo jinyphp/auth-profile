@@ -47,14 +47,31 @@
 
     <div class="list-group list-group-flush" role="tablist">
         <a class="list-group-item list-group-item-action active"
-            data-bs-toggle="list"
-            href="#account" role="tab" aria-selected="true">
-            Account
+            href="/home/profile/account">
+            회원정보
         </a>
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password" role="tab" aria-selected="false" tabindex="-1">
+
+        <a class="list-group-item list-group-item-action"
+            href="/home/profile/avata">
+            아바타설정
+        </a>
+
+        <a class="list-group-item list-group-item-action"
+            href="/home/profile/password">
             Password
         </a>
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab" aria-selected="false" tabindex="-1">
+
+        <a class="list-group-item list-group-item-action"
+            href="/home/profile/security">
+            보안설정
+        </a>
+
+        <a class="list-group-item list-group-item-action"
+            href="/home/profile/social">
+            소셜미디어
+        </a>
+
+        {{-- <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab" aria-selected="false" tabindex="-1">
             Privacy and safety
         </a>
         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab" aria-selected="false" tabindex="-1">
@@ -63,9 +80,7 @@
         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab" aria-selected="false" tabindex="-1">
             Web notifications
         </a>
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab" aria-selected="false" tabindex="-1">
-            Widgets
-        </a>
+
         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab" aria-selected="false" tabindex="-1">
             Your data
         </a>
@@ -83,10 +98,7 @@
             Security
         </a>
 
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
-            href="/account/social-links" role="tab" aria-selected="false" tabindex="-1">
-            Social
-        </a>
+
 
         <a class="list-group-item list-group-item-action" data-bs-toggle="list"
             href="/account/integration" role="tab" aria-selected="false" tabindex="-1">
@@ -101,11 +113,11 @@
         <a class="list-group-item list-group-item-action" data-bs-toggle="list"
             href="/account/setting" role="tab" aria-selected="false" tabindex="-1">
             Setting
-        </a>
+        </a> --}}
 
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
-            href="/" role="tab" aria-selected="false" tabindex="-1">
-            Sign Out
+        <a class="list-group-item list-group-item-action"
+            href="/home/profile/logout">
+            회원탈퇴
         </a>
     </div>
 </div>

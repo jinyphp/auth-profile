@@ -5,7 +5,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class AccountProfile extends Component
+class ProfileSocial extends Component
 {
     public $form;
     public $user_id;
@@ -17,7 +17,7 @@ class AccountProfile extends Component
         $this->user_id = $user->id;
 
         if($this->user_id) {
-            $row = DB::table('accounts')
+            $row = DB::table('account_social')
             ->where('user_id',$this->user_id)
             ->first();
 
@@ -35,7 +35,7 @@ class AccountProfile extends Component
 
     public function render()
     {
-        $viewFile = 'jiny-profile::livewire.profile.form';
+        $viewFile = 'jiny-profile::livewire.profile_social';
         return view($viewFile);
     }
 
@@ -43,14 +43,38 @@ class AccountProfile extends Component
     {
         $form =  $this->form;
         if($this->row_id) {
-            DB::table('accounts')
+            DB::table('account_social')
                 ->where('id',$this->user_id)
                 ->update($form);
         } else {
             $form['user_id'] = $this->user_id;
-            DB::table('accounts')
+            DB::table('account_social')
                 ->insert($form);
         }
+
+        /*
+        $form = [];
+        foreach( array_slice($this->form, 1) as $key => $item) {
+            $form []= [
+                'type' => $key,
+                'link' => $item['link'],
+                'user_id' => $this->user_id
+            ];
+        }
+
+        dd($form);
+        */
+        /*
+        if($this->row_id) {
+            DB::table('account_social')
+                ->where('id',$this->user_id)
+                ->update($form);
+        } else {
+            //$form['user_id'] = $this->user_id;
+            DB::table('account_social')
+                ->insert($form);
+        }
+        */
 
     }
 

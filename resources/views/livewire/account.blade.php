@@ -18,15 +18,21 @@
         <div class="col-lg-6">
             <label for="profileBirthdayInput" class="form-label">생년월일</label>
             <input type="text" class="form-control input-date" id="profileBirthdayInput"
-                placeholder="dd/mm/yyyy" required />
+                placeholder="yyyy/mm/dd"
+                wire:model.defer="form.birth"/>
             <div class="invalid-feedback">Please enter birthday.</div>
         </div>
 
         <div class="col-lg-6">
+
+            {{--
             <label for="profilePhoneInput" class="form-label">전화번호</label>
             <input type="text" class="form-control input-phone" id="profilePhoneInput"
-                placeholder="+82 010 XXX XXXX" required />
+                placeholder="+82 010 XXX XXXX" required
+                />
             <div class="invalid-feedback">Please enter phone.</div>
+            --}}
+
         </div>
 
 

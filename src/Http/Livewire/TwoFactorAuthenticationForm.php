@@ -175,7 +175,7 @@ class TwoFactorAuthenticationForm extends Component
      */
     public function render()
     {
-        $viewFile = "jiny-profile::profile.two-factor-authentication-form";
+        $viewFile = "jiny-profile::livewire.two-factor-authentication-form";
         return view($viewFile);
     }
 }

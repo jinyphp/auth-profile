@@ -36,22 +36,9 @@
 
                     <div class="col-md-8 col-xl-9">
 
+                        {{-- <x-profile-form-address>
 
-
-
-                        <!--  -->
-                        <x-profile-form-picture>
-
-                        </x-profile-form-picture>
-
-
-                        <x-profile-form-infomation>
-
-                        </x-profile-form-infomation>
-
-                        <x-profile-form-address>
-
-                        </x-profile-form-address>
+                        </x-profile-form-address> --}}
 
 
 

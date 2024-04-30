@@ -2,10 +2,53 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+// Home Profile 정보
+Route::get('/home',[
+    \Jiny\Profile\Http\Controllers\HomeController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
 
-Route::get('/home',[\Jiny\Profile\Http\Controllers\HomeController::class, 'index'])
-    ->middleware(['web', 'auth'])
-    ->name('home');
+Route::get('/home/profile/avata',[
+    \Jiny\Profile\Http\Controllers\ProfileAvataController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
+
+Route::get('/home/profile/account',[
+    \Jiny\Profile\Http\Controllers\ProfileAccountController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
+
+/*
+Route::get('/home/profile/info',[
+    \Jiny\Profile\Http\Controllers\ProfileInfoController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
+*/
+
+
+Route::get('/home/profile/password',[
+    \Jiny\Profile\Http\Controllers\ProfilePasswordController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
+
+Route::get('/home/profile/security',[
+    \Jiny\Profile\Http\Controllers\ProfileSecurityController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
+
+Route::get('/home/profile/social',[
+    \Jiny\Profile\Http\Controllers\ProfileSocialController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
+
+Route::get('/home/profile/logout',[
+    \Jiny\Profile\Http\Controllers\ProfileLogoutController::class,
+    'index'
+])->middleware(['web', 'auth'])->name('home');
+
+
+
+
 
 
 Route::middleware(['web','auth'])
@@ -16,18 +59,11 @@ Route::middleware(['web','auth'])
 
     Route::get('/profile', [\Jiny\Profile\Http\Controllers\Profile::class, 'index']);
 
-    Route::get('password', [\Jiny\Profile\Http\Controllers\Password::class, 'index']);
 
-    Route::get('security', [\Jiny\Profile\Http\Controllers\Security::class, 'index']);
-
-    Route::get('logout', [\Jiny\Profile\Http\Controllers\Logout::class, 'index']);
 
 
     /*
     Route::get('profile', 'MypageController@p');
-
-
-
     Route::get('billing', 'MypageController@billing');
     Route::get('notifications', 'MypageController@notifications');
     */

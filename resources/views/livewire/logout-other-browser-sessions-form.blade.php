@@ -67,7 +67,7 @@
 
             <div class="mt-4" x-data="{}"
                 x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
-                <input type="password" class="mt-1 block w-3/4" autocomplete="current-password"
+                <input type="password" class="form-control" autocomplete="current-password"
                     placeholder="{{ __('Password') }}" x-ref="password" wire:model="password"
                     wire:keydown.enter="logoutOtherBrowserSessions" />
 
@@ -76,12 +76,16 @@
         </x-slot>
 
         <x-slot name="footer">
-            <button class="btn btn-danger" wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
+            <button class="btn btn-danger"
+                wire:click="$toggle('confirmingLogout')"
+                wire:loading.attr="disabled">
+                {{ __('취소') }}
             </button>
 
-            <button class="btn btn-primary ms-3" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled">
-                {{ __('Log Out Other Browser Sessions') }}
+            <button class="btn btn-primary ms-3"
+                wire:click="logoutOtherBrowserSessions"
+                wire:loading.attr="disabled">
+                {{ __('다른 브라우저 세션 로그아웃') }}
             </button>
         </x-slot>
     </x-dialog-modal>

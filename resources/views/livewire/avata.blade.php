@@ -1,28 +1,16 @@
 <div>
     <x-loading-indicator/>
 
+    <label for="fileInput" class="form-label">이미지</label>
     <div class="row">
-
-        <div class="col-2">
-            @if($profile && $profile->image)
-                <x-avata src="/account/{{$profile->image}}"/>
-            @else
-
-            @endif
-        </div>
         <div class="col-10">
-            <div class="mb-3">
-                <label for="fileInput" class="form-label">이미지</label>
-                <input type="file" class="form-control" id="fileInput" name="photo" wire:model="photo">
-                <small>사용 가능한 형식은  *.jpeg, *.jpg, *.png, *.gif 으로 최대 4MB 사이즈로 제한됩니다.</small>
-            </div>
-            <div class="mt-4">
-                {{-- <button class="btn btn-primary me-2">업로드</button> --}}
-            </div>
+            <input type="file" class="form-control" id="fileInput" name="photo" wire:model="photo">
+            <small>사용 가능한 형식은  *.jpeg, *.jpg, *.png, *.gif 으로 최대 4MB 사이즈로 제한됩니다.</small>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary me-2" wire:click="submit()">업로드</button>
         </div>
     </div>
-
-
 
 
     {{-- @pushOnce('scripts')

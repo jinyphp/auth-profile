@@ -19,7 +19,7 @@ class JinyProfileServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', $this->package);
 
         // 데이터베이스
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../databases/migrations');
 
         // 설정파일 복사
         $this->publishes([
@@ -47,19 +47,27 @@ class JinyProfileServiceProvider extends ServiceProvider
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
 
+            // 아바타의 이미지를 변경합니다.
+            Livewire::component('avata-image', \Jiny\Profile\Http\Livewire\AvataImage::class);
+            Livewire::component('avata-update', \Jiny\Profile\Http\Livewire\AvataUpdate::class);
 
-            Livewire::component('account-avata', \Jiny\Profile\Http\Livewire\AvataLivewire::class);
-            Livewire::component('account-profile', \Jiny\Profile\Http\Livewire\AccountProfile::class);
-            Livewire::component('account-address', \Jiny\Profile\Http\Livewire\AccountAddress::class);
-            Livewire::component('account-email', \Jiny\Profile\Http\Livewire\AccountEmail::class);
+            // 패스워드 변경
+            Livewire::component('profile-password', \Jiny\Profile\Http\Livewire\ProfilePassword::class);
+            Livewire::component('profile-account', \Jiny\Profile\Http\Livewire\ProfileAccount::class);
+            Livewire::component('profile-address', \Jiny\Profile\Http\Livewire\ProfileAddress::class);
+            Livewire::component('profile-phone', \Jiny\Profile\Http\Livewire\ProfilePhone::class);
+            Livewire::component('profile-email', \Jiny\Profile\Http\Livewire\ProfileEmail::class);
+            Livewire::component('profile-social', \Jiny\Profile\Http\Livewire\ProfileSocial::class);
 
-            Livewire::component('account-social', \Jiny\Profile\Http\Livewire\AccountSocial::class);
-
-            Livewire::component('profile.logout-other-browser-sessions-form',
+            Livewire::component('profile-browser-sessions',
                 \Jiny\Profile\Http\Livewire\LogoutOtherBrowserSessionsForm::class);
 
             Livewire::component('profile.two-factor-authentication-form',
                 \Jiny\Profile\Http\Livewire\TwoFactorAuthenticationForm::class);
+
+
+            // 회원탈퇴
+            Livewire::component('auth-out', \Jiny\Profile\Http\Livewire\AuthOut::class);
 
         });
 

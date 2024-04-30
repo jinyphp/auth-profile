@@ -1,30 +1,13 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-3">
+            <div class="col-2 flex flex-row justify-center">
 
+                @livewire('avata-image',['width'=>"128px"])
 
-                <div class="d-flex flex-column align-items-center">
-                    <img src="/account/avatas/{{$user->id}}"
-                        class="img-fluid rounded-circle mb-2" width="128" height="128"/>
-
-                    {{-- <h5 class="card-title mb-0">{{$user->name}}</h5> --}}
-                    {{-- <div class="text-muted mb-2">Lead Developer</div> --}}
-
-                    {{-- <div>
-                        <a class="btn btn-primary btn-sm" href="#">Follow</a>
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                            Message
-                        </a>
-                    </div> --}}
-                </div>
             </div>
 
-            <div class="col-9">
-                <h5 class="card-title mb-2">Profile Details</h5>
+            <div class="col-10">
 
                 <div class="row">
                     <div class="col-9">

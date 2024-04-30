@@ -134,7 +134,7 @@ class LogoutOtherBrowserSessionsForm extends Component
      */
     public function render()
     {
-        $viewFile = 'jiny-profile::profile.logout-other-browser-sessions-form';
+        $viewFile = 'jiny-profile::livewire.logout-other-browser-sessions-form';
         return view($viewFile);
     }
 }

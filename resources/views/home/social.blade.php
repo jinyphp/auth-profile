@@ -13,7 +13,7 @@
                                     <li class="breadcrumb-item active">Profile</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Profile</h4>
+                            <h4 class="page-title">Profile Settings</h4>
                         </div>
                     </div>
                 </div>
@@ -21,46 +21,37 @@
 
 
             <div class="container p-0">
-
                 <div class="row">
+                    <!-- 왼쪽 메뉴 -->
                     <div class="col-md-4 col-xl-3">
-                        @includeIf('jiny-profile::accounts.sidemenu')
-
+                        @includeIf('jiny-profile::home.sidemenu')
                     </div>
 
                     <div class="col-md-8 col-xl-9">
+                        <!-- contents -->
+
+
+
+                        <!--  -->
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title">
-                                    {{ __('패스워드 재설정') }}
+                                    소셜미디어
                                 </h4>
                                 <p class="text-muted font-14">
-                                    {{ __('비밀번로를 변경할 수 있습니다.') }}
+                                    개인별 소설미디어 링크를 입력합니다.
                                 </p>
+                                @livewire('profile-social')
                             </div>
                         </div>
-
-                        {{-- 브라우저 세션--}}
-                        <x-profile-browser_sessions>
-                            <div class="text-muted font-14">
-                                {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
-                            </div>
-                            @livewire('profile.logout-other-browser-sessions-form')
-                        </x-profile-browser_sessions>
-
-                        {{-- 2FA 인증--}}
-                        <x-profile-two-factor-authentication>
-                            @livewire('profile.two-factor-authentication-form')
-                        </x-profile-two-factor-authentication>
-
-
-
+                        <!-- -->
 
 
                     </div>
-                </div>
 
-            </div>
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+
         </main>
     </x-bootstrap>
 </x-app>

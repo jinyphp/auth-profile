@@ -5,7 +5,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class AccountEmail extends Component
+class ProfileEmail extends Component
 {
     public $form;
     public $user_id;
@@ -30,7 +30,7 @@ class AccountEmail extends Component
 
     public function render()
     {
-        $viewFile = 'jiny-profile::livewire.account_email';
+        $viewFile = 'jiny-profile::livewire.profile_email';
         return view($viewFile);
     }
 

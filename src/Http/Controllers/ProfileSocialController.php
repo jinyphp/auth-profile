@@ -13,14 +13,17 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class ProfileSocialController extends Controller
 {
-    /**
-     * 로그인후 Home 화면입니다.
-     */
+    private $viewName;
+    public function __construct()
+    {
+        $this->viewName = "home.social";
+    }
+
     public function index() {
         $message = [];
-        $viewName = "home.index";
+        $viewName = "home.security";
 
         $user = Auth::user();
 
@@ -32,11 +35,11 @@ class HomeController extends Controller
 
                 // 슬롯이 있는 경우
                 if($slot = www_slot()) {
-                    $viewfile = $prefix."::".$slot.".".$viewName;
+                    $viewfile = $prefix."::".$slot.".".$this->viewName;
                 }
                 // 슬롯이 없는 경우
                 else {
-                    $viewfile = $prefix."::".$viewName;
+                    $viewfile = $prefix."::".$this->viewName;
                 }
 
                 // 우선순위1. www 의 home.blade를 출력
@@ -58,7 +61,7 @@ class HomeController extends Controller
                 // 테마가 지정되어 있는 경우만 처리
                 if($themeName = getThemeName()) {
                     $themeName = str_replace('/','.',$themeName);
-                    $viewfile = "theme::".$themeName.".".$viewName;
+                    $viewfile = "theme::".$themeName.".".$this->viewName;
                     if (View::exists($viewfile)) {
                         return view($viewfile,[
                             'message' => $message,
@@ -73,7 +76,7 @@ class HomeController extends Controller
         // 우선순위3
         // 패키지의 리소스에서 home을 출력
         $package = "jiny-profile";
-        $viewfile = $package."::".$viewName;
+        $viewfile = $package."::".$this->viewName;
 
         if($viewfile) {
             return view($viewfile,[

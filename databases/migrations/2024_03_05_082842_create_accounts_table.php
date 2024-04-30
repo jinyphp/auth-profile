@@ -38,6 +38,10 @@ class CreateAccountsTable extends Migration
             $table->text('description')->nullable();
 
 
+            $table->unsignedBigInteger('address_id')->default(0);
+            $table->unsignedBigInteger('phone_id')->default(0);
+
+
             // 관리 담당자
             $table->unsignedBigInteger('manager_id')->default(0);
 

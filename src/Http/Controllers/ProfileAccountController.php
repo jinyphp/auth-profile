@@ -13,14 +13,12 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class ProfileAccountController extends Controller
 {
-    /**
-     * 로그인후 Home 화면입니다.
-     */
+
     public function index() {
         $message = [];
-        $viewName = "home.index";
+        $viewName = "home.account";
 
         $user = Auth::user();
 
