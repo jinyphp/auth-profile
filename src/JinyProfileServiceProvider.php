@@ -23,7 +23,7 @@ class JinyProfileServiceProvider extends ServiceProvider
 
         // 설정파일 복사
         $this->publishes([
-            __DIR__.'/../config/setting.php' => config_path('jiny/profile/setting.php'),
+            __DIR__.'/../config/setting.php' => config_path('jiny/auth/profile.php'),
         ]);
 
 
