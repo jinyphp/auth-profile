@@ -2,11 +2,16 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-// Home Profile 정보
+## Home Profile 정보
+## 로그인후 사용자의 정보를 확인할 수 있는 home 화면 입니다.
 Route::get('/home',[
     \Jiny\Profile\Http\Controllers\HomeController::class,
     'index'
 ])->middleware(['web', 'auth'])->name('home');
+
+
+
+
 
 Route::get('/home/profile/avata',[
     \Jiny\Profile\Http\Controllers\ProfileAvataController::class,

@@ -8,15 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 //use Livewire\WithFileUploads;
 
+/**
+ * 회원 아바타 이미지 표시
+ */
 class AvataImage extends Component
 {
     private $user_id;
     public $width = "64px";
     public $rounded = true;
-
-
-    //public $photo;
-    //public $filename;
 
     public function mount($userid=null)
     {
@@ -28,7 +27,6 @@ class AvataImage extends Component
                 $this->user_id = $user->id;
             }
         }
-
     }
 
     public function render()

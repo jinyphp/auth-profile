@@ -5,6 +5,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+
 class ProfileAccount extends Component
 {
     public $form;

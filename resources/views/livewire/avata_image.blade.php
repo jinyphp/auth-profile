@@ -26,6 +26,8 @@
         <img src="/account/{{$profile->image}}"
             class="avata @if($rounded) rounded-circle @endif"/>
     @else
+        <div class="avata @if($rounded) rounded-circle @endif bg-gray-300"/>
 
+        </div>
     @endif
 </div>

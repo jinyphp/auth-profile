@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * 사용자의 페스워드를 변경합니다.
+ */
 class ProfilePassword extends Component
 {
     public $form;
@@ -15,15 +18,34 @@ class ProfilePassword extends Component
     public $popupPassword = false;
     public $verification = false;
 
+    public $viewFile;
+    public $viewForm;
+    public $viewSuccess;
+
+    public $status = false;
+
+
     public function mount()
     {
+        $this->status = false;
         $this->form = [];
+
+        if(!$this->viewForm) {
+            $this->viewForm = 'jiny-profile::livewire.password.password';
+        }
+
+        if(!$this->viewSuccess) {
+            $this->viewSuccess = 'jiny-profile::livewire.password.success';
+        }
     }
 
     public function render()
     {
-        $viewFile = 'jiny-profile::livewire.profile_password';
-        return view($viewFile);
+        if($this->status) {
+            return view($this->viewSuccess);
+        }
+
+        return view($this->viewForm);
     }
 
     public function submit()
@@ -85,6 +107,8 @@ class ProfilePassword extends Component
             $this->error = "기존 비밀번호가 일치하지 않습니다.";
             $this->popupPassword = true;
         }
+
+        $this->status = true;
 
     }
 

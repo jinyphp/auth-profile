@@ -5,68 +5,109 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * 사용자별 주소 목록입니다.
+ */
 class ProfileAddress extends Component
 {
     public $actions=[];
-
-    //private $table_name = "accounts";
     public $parent = [];
-
-    //private $nest_table_name = "account_address";
+    public $account = [];
 
     public $user_id;
     public $row_id;
 
-    public $rows = [];
+    //public $rows = [];
     public $edit_id;
     public $form = [];
+    //public $selected;
 
     public $popupForm = false;
 
+    public $viewFile;
+    public $viewList;
+    public $viewForm;
+
     public function mount()
     {
-        // $user = Auth::user();
-        // $this->user_id = $user->id;
-        $this->actions['table'] = "accounts";
+        //$this->actions['table'] = "accounts";
 
-        $this->actions['nested']['tablename'] = "account_address";
-        $this->actions['nested']['key'] = "address_id";
+        //$this->actions['nested']['tablename'] = "account_address";
+        //$this->actions['nested']['key'] = "address_id";
 
-        $this->actions['nested']['view_table'] = 'jiny-profile::livewire.address.table';
-        $this->actions['nested']['view_list'] = 'jiny-profile::livewire.address.list';
-        $this->actions['nested']['view_form'] = 'jiny-profile::livewire.address.form';
+
+        if(!$this->viewFile) {
+            $this->viewFile = 'jiny-profile::livewire.address.table';
+        }
+
+        if(!$this->viewList) {
+            $this->viewList = 'jiny-profile::livewire.address.list';
+        }
+
+        if(!$this->viewForm) {
+            $this->viewForm = 'jiny-profile::livewire.address.form';
+        }
 
     }
 
     public function render()
     {
-        $user_id = Auth::user()->id;
+        $userid = Auth::user()->id;
+        $this->user_id = $userid;
 
-        // 부모 테이블 정보
-        $table_name = $this->actions['table'];
-        $parent = DB::table($table_name)
-                ->where('user_id', $user_id)
+        ## 사용자 정보
+        $this->userAccount($userid);
+
+        ## 사용자 주소 목록
+        $rows = $this->userAddress($userid);
+        //dd($rows);
+        return view($this->viewFile,[
+            'rows' => $rows
+        ]);
+    }
+
+    public function userAccount($userid)
+    {
+        $row = DB::table("accounts")
+                ->where('user_id', $userid)
                 ->first();
-        $this->parent = get_object_vars($parent);
-
-        // 자식 테이블 목록
-        $nasted_table_name = $this->actions['nested']['tablename'];
-        $rows = DB::table($nasted_table_name)
-            ->where('user_id', $user_id)
-            ->get();
-        if($rows) {
-            // 배열로 변환
-            $this->rows = [];
-            foreach($rows as $row) {
-                $this->rows []= get_object_vars($row);
-            }
-
-        } else {
-            $rows = [];
+        if($row) {
+            $this->account = get_object_vars($row);
         }
+    }
 
-        $viewFile = $this->actions['nested']['view_table'];
-        return view($viewFile);
+    public function userAddress($userid)
+    {
+        $rows = DB::table("account_address")
+            ->where('user_id', $userid)
+            ->get();
+
+        return $rows;
+
+        // $this->rows = []; //초기화
+        // foreach($rows as $row) {
+        //     $this->rows []= get_object_vars($row);
+        // }
+    }
+
+
+    public function selected($value)
+    {
+        // 사용자 전화번로 전체 초기화
+        DB::table("account_address")
+            ->where('user_id',$this->user_id)
+            ->update([
+                'selected'=>null
+            ]);
+
+        // dd($value);
+        // 선택
+        DB::table("account_address")
+            ->where('id',$value)
+            ->update([
+                'selected'=> "checked"
+            ]);
+
     }
 
     public function create()
@@ -83,11 +124,10 @@ class ProfileAddress extends Component
 
     public function store()
     {
-        $form =  $this->form;
+        $form = $this->form;
         $form['user_id'] = Auth::user()->id;
 
-        $nasted_table_name = $this->actions['nested']['tablename'];
-        $nested_id = DB::table($nasted_table_name)->insertGetId($form);
+        $nested_id = DB::table("account_address")->insertGetId($form);
 
         $this->close();
     }
@@ -97,8 +137,7 @@ class ProfileAddress extends Component
         $this->popupForm = true;
         $this->edit_id = $id;
 
-        $nasted_table_name = $this->actions['nested']['tablename'];
-        $row = DB::table($nasted_table_name)
+        $row = DB::table("account_address")
             ->where('id', $id)
             ->first();
 
@@ -107,10 +146,9 @@ class ProfileAddress extends Component
 
     public function update()
     {
-        $form =$this->form;
+        $form = $this->form;
 
-        $nasted_table_name = $this->actions['nested']['tablename'];
-        DB::table($nasted_table_name)
+        DB::table("account_address")
                 ->where('id',$this->edit_id)
                 ->update($form);
 
@@ -135,39 +173,27 @@ class ProfileAddress extends Component
         }
 
         if($id) {
-            $nasted_table_name = $this->actions['nested']['tablename'];
-            $nest = DB::table($nasted_table_name)
-                ->where('id', $id)->first();
-
-            DB::table($nasted_table_name)
+            // 선택된 전화번호 삭제
+            DB::table("account_address")
                 ->where('id', $id)
                 ->delete();
 
-            $key = $this->actions['nested']['key'];
-            $table_name = $this->actions['table'];
-            if($this->parent[$key] == $nest->id) {
-                DB::table($table_name)
-                    ->where('user_id', $nest->user_id)->update([
-                        $key => 0
-                    ]);
-            }
+            // // 기본
+            // $phone = DB::table("account_phone")
+            //     ->where('id', $id)->first();
+
+            // $key = "phone_id";;
+            // if($this->account[$key] == $phone->id) {
+            //     DB::table("accounts")
+            //         ->where('user_id', $phone->user_id)->update([
+            //             $key => 0
+            //         ]);
+            // }
 
         }
 
+        // 입력폼 초기화
         $this->form = [];
-    }
-
-
-    public function apply($id)
-    {
-        $user_id = Auth::user()->id;
-
-        $key = $this->actions['nested']['key'];
-        $table_name = $this->actions['table'];
-        DB::table($table_name)
-            ->where('user_id', $user_id)->update([
-                $key => $id
-            ]);
     }
 
 }

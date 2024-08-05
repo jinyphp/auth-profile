@@ -51,8 +51,13 @@ class JinyProfileServiceProvider extends ServiceProvider
             Livewire::component('avata-image', \Jiny\Profile\Http\Livewire\AvataImage::class);
             Livewire::component('avata-update', \Jiny\Profile\Http\Livewire\AvataUpdate::class);
 
+            ## 로그인 상태표시
+            Livewire::component('profile-status',
+                \Jiny\Profile\Http\Livewire\ProfileStatus::class);
+
             // 패스워드 변경
-            Livewire::component('profile-password', \Jiny\Profile\Http\Livewire\ProfilePassword::class);
+            Livewire::component('profile-password',
+                \Jiny\Profile\Http\Livewire\ProfilePassword::class);
             Livewire::component('profile-account', \Jiny\Profile\Http\Livewire\ProfileAccount::class);
             Livewire::component('profile-address', \Jiny\Profile\Http\Livewire\ProfileAddress::class);
             Livewire::component('profile-phone', \Jiny\Profile\Http\Livewire\ProfilePhone::class);
