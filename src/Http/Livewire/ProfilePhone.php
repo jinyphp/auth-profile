@@ -50,6 +50,7 @@ class ProfilePhone extends Component
 
     }
 
+    // 사용자 전화번호 목록 가져와 배열로 view에 전달
     public function render()
     {
         $userid = Auth::user()->id;
@@ -59,23 +60,26 @@ class ProfilePhone extends Component
         $this->userAccount($userid);
 
         ## 사용자 전화번호 목록
-        $rows = $this->userPhone($userid);
+        $phones = $this->userPhone($userid);
         //dd($rows);
         return view($this->viewFile,[
-            'rows' => $rows
+            'rows' => $phones
         ]);
     }
 
+    // 사용자 정보 조회
     public function userAccount($userid)
     {
         $row = DB::table("accounts")
                 ->where('user_id', $userid)
                 ->first();
+
         if($row) {
             $this->account = get_object_vars($row);
         }
     }
 
+    //사용자의 전화번호 목록 조회.
     public function userPhone($userid)
     {
         $rows = DB::table("account_phone")
@@ -83,11 +87,6 @@ class ProfilePhone extends Component
             ->get();
 
         return $rows;
-
-        // $this->rows = []; //초기화
-        // foreach($rows as $row) {
-        //     $this->rows []= get_object_vars($row);
-        // }
     }
 
 
