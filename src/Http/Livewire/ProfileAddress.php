@@ -59,10 +59,10 @@ class ProfileAddress extends Component
         $this->userAccount($userid);
 
         ## 사용자 주소 목록
-        $rows = $this->userAddress($userid);
+        $addresses = $this->userAddress($userid);
         //dd($rows);
         return view($this->viewFile,[
-            'rows' => $rows
+            'rows' => $addresses
         ]);
     }
 
@@ -83,11 +83,6 @@ class ProfileAddress extends Component
             ->get();
 
         return $rows;
-
-        // $this->rows = []; //초기화
-        // foreach($rows as $row) {
-        //     $this->rows []= get_object_vars($row);
-        // }
     }
 
 
@@ -177,18 +172,6 @@ class ProfileAddress extends Component
             DB::table("account_address")
                 ->where('id', $id)
                 ->delete();
-
-            // // 기본
-            // $phone = DB::table("account_phone")
-            //     ->where('id', $id)->first();
-
-            // $key = "phone_id";;
-            // if($this->account[$key] == $phone->id) {
-            //     DB::table("accounts")
-            //         ->where('user_id', $phone->user_id)->update([
-            //             $key => 0
-            //         ]);
-            // }
 
         }
 
