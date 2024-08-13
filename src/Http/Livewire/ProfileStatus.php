@@ -23,7 +23,7 @@ class ProfileStatus extends Component
         $this->user['name'] = $user->name;
         $this->user['email'] = $user->email;
 
-        // 유저 타입 및 권환
+        // 유저 타입 및 권한
         $this->userType = $user->utype;
 
         $this->lastLog = userLastLog();

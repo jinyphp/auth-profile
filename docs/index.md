@@ -13,6 +13,6 @@
 * email
 * password
 * phone
-* seocial
+* social
 
 ## 관리자

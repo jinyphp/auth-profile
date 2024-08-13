@@ -41,7 +41,7 @@ class CreateAccountAvataTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.(rollback)
      *
      * @return void
      */

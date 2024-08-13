@@ -3,14 +3,12 @@
 
 ## profile-phone 컴포넌트
 `profile-phone`는 회원별 복수의 전화번호를 관리할 수 있도록 목록을 관리하는 UI 컴포넌트 입니다.
-
 ```php
 @livewire('profile-phone')
 ```
 
 ### 화면 주입하기
 컴포넌트에 화면을 주입할 수 있습니다.
-
 ```php
 @livewire('profile-phone',[
     'viewFile' => "컴포넌트 레이아웃",
@@ -21,6 +19,7 @@
 
 ## mount() 메소드
 라이브와이어 생성자. livewire 처음 로딩될 때 한 번만 실행.
+>viewFile, viewList, viewForm으로 화면 설정
 
 ## render() 메소드
 사용자 전화번호 목록 가져와 배열로 view에 전달.
@@ -42,7 +41,7 @@
         ]);
     }
 ```
->view는 객체를 접근할 수 없기 때문에 배열로 변환해서 전달하는데, 이는 서버와 AJAX 통신을 하는 livewire가 객체를 전달할 수 없기 떄문입니다.
+>view에 객체를 배열로 변환해서 전달하는데, 이는 서버와 AJAX 통신을 하는 livewire가 객체를 전달할 수 없기 떄문입니다.
 
 ## userAccount() 헬퍼함수
 DB에서 지정한 사용자의 정보를 조회해 배열의 형태로 프로퍼티에 저장하는 헬퍼함수입니다.
@@ -74,8 +73,10 @@ DB에서 지정한 사용자의 연락처 정보 목록을 읽어 오는 헬퍼�
         return $rows;
     }
 ```
->account_phone DB에 매번 직접 접속하는 대신, method를 통하여 간접 접속을 합니다.
+>DB에 매번 직접 접속하는 대신, method를 통하여 간접 접속을 합니다.
 >account_phone의 이름이 변경됐을 때 코드에 적용하기 편리합니다.
+>get() 함수는 쿼리를 실행하고 결과를 객체의 컬렉션 형태로 반환합니다.
+>$row 변수에는 해당 사용자 ID와 일치하는 모든 레코드가 객체 형태로 담깁니다.
 
 현재 로그인된 사용자의 연락처
 ```php
@@ -93,7 +94,7 @@ $rows = getUserPhone(1);
 ```
 
 ## selected($value)
-디폴트 전화번호 레코드를 지정합니다.
+기본(default) 전화번호를 지정합니다.
 ```php
     public function selected($value)
     {
@@ -138,7 +139,7 @@ $rows = getUserPhone(1);
 >insertGetId()는 Laravel의 Eloquent ORM에서 제공하는 함수이며, 데이터베이스에 새로운 레코드를 삽입하고 그 레코드의 기본 키(primary key) 값을 반환합니다.
 
 ## edit($id)
-수정하고픈 레코드의 id를 통해 해당 레코드를 배열로 받아와 입력폼에 출력합니다.
+수정하고픈 레코드를 배열로 받아와 입력폼에 출력합니다.
 
 ## update()
 입력받은 폼으로 DB의 레코드를 변경(update)합니다.

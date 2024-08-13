@@ -56,7 +56,8 @@ class AvataUpdate extends Component
     private function updateDatabase($filename)
     {
         $profile = DB::table('account_avata')
-                    ->where('user_id',$this->user_id)->first();
+                    ->where('user_id',$this->user_id)
+                    ->first();
 
         if($profile) {
             // 갱신

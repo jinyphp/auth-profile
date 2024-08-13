@@ -92,7 +92,7 @@ class ProfilePhone extends Component
 
     public function selected($value)
     {
-        // 사용자 전화번로 전체 초기화
+        // 사용자 전화번호 전체 초기화
         DB::table("account_phone")
             ->where('user_id',$this->user_id)
             ->update([
@@ -106,7 +106,6 @@ class ProfilePhone extends Component
             ->update([
                 'selected'=> "checked"
             ]);
-
     }
 
     public function create()
@@ -176,18 +175,6 @@ class ProfilePhone extends Component
             DB::table("account_phone")
                 ->where('id', $id)
                 ->delete();
-
-            // // 기본
-            // $phone = DB::table("account_phone")
-            //     ->where('id', $id)->first();
-
-            // $key = "phone_id";;
-            // if($this->account[$key] == $phone->id) {
-            //     DB::table("accounts")
-            //         ->where('user_id', $phone->user_id)->update([
-            //             $key => 0
-            //         ]);
-            // }
 
         }
 
