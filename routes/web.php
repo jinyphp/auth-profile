@@ -2,26 +2,65 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+$home = "home";
+
 ## Home Profile 정보
 ## 로그인후 사용자의 정보를 확인할 수 있는 home 화면 입니다.
-Route::get('/home',[
-    \Jiny\Profile\Http\Controllers\HomeController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
+Route::middleware(['web','auth'])
+->name('home.')
+->prefix($home)->group(function() {
+    // profile index
+    Route::get('/',[
+        \Jiny\Profile\Http\Controllers\HomeController::class,
+        'index'
+    ])->name('index');
+
+    // home 아바타 프로파일 변경
+    Route::get('/profile/avata',[
+        \Jiny\Profile\Http\Controllers\ProfileAvataController::class,
+        'index'
+    ])->name('user.avata');
+
+    // 계정 정보 변경 페이지
+    Route::get('/profile/account',[
+        \Jiny\Profile\Http\Controllers\ProfileAccountController::class,
+        'index'
+    ])->name('user.account');
+
+    // 페스워드 변경 페이지
+    Route::get('/profile/password',[
+        \Jiny\Profile\Http\Controllers\ProfilePasswordController::class,
+        'index'
+    ])->name('user.password');
+
+    // 보안 접속 페이지
+    Route::get('/profile/security',[
+        \Jiny\Profile\Http\Controllers\ProfileSecurityController::class,
+        'index'
+    ])->name('user.security');
+
+    // 소설 링크 정보 페이지
+    Route::get('/profile/social',[
+        \Jiny\Profile\Http\Controllers\ProfileSocialController::class,
+        'index'
+    ])->name('user.social');
+
+    // 로그아웃 및 회원탈퇴 페이지
+    Route::get('/profile/logout',[
+        \Jiny\Profile\Http\Controllers\ProfileLogoutController::class,
+        'index'
+    ])->name('user.logout');
+
+});
 
 
 
 
 
-Route::get('/home/profile/avata',[
-    \Jiny\Profile\Http\Controllers\ProfileAvataController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
 
-Route::get('/home/profile/account',[
-    \Jiny\Profile\Http\Controllers\ProfileAccountController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
+
+
+
 
 /*
 Route::get('/home/profile/info',[
@@ -31,25 +70,9 @@ Route::get('/home/profile/info',[
 */
 
 
-Route::get('/home/profile/password',[
-    \Jiny\Profile\Http\Controllers\ProfilePasswordController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
 
-Route::get('/home/profile/security',[
-    \Jiny\Profile\Http\Controllers\ProfileSecurityController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
 
-Route::get('/home/profile/social',[
-    \Jiny\Profile\Http\Controllers\ProfileSocialController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
 
-Route::get('/home/profile/logout',[
-    \Jiny\Profile\Http\Controllers\ProfileLogoutController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
 
 
 

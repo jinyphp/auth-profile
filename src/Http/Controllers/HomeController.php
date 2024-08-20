@@ -22,40 +22,43 @@ class HomeController extends SiteController
     {
         parent::__construct();
         $this->setVisit($this);
+
+        // 기본값
+        $this->viewFileLayout = "jiny-profile::home.index";
     }
 
 
     public function index(Request $request)
     {
-        ## 우선순위1
-        ## actions에서 설정된 값이 최우선 적용됨
+        // ## 우선순위1
+        // ## actions에서 설정된 값이 최우선 적용됨
 
-        if(!isset($this->actions['view']['layout'])) {
-            ## 우선순위2, slot 데이터
-            if($slot = www_slot()) {
-                $viewFile = "www::".$slot.".".$this->viewName;
-                if (View::exists($viewFile)) {
-                    $this->actions['view']['layout'] = $viewFile;
-                }
-            }
+        // if(!isset($this->actions['view']['layout'])) {
+        //     ## 우선순위2, slot 데이터
+        //     if($slot = www_slot()) {
+        //         $viewFile = "www::".$slot.".".$this->viewName;
+        //         if (View::exists($viewFile)) {
+        //             $this->actions['view']['layout'] = $viewFile;
+        //         }
+        //     }
 
-            ## 우선순위3, 테마 데이터
-            if($themeName = getThemeName()) {
-                $themeName = str_replace('/','.',$themeName);
-                $viewFile = "theme::".$themeName.".".$this->viewName;
-                if (View::exists($viewFile)) {
-                    $this->actions['view']['layout'] = $viewFile;
-                }
-            }
+        //     ## 우선순위3, 테마 데이터
+        //     if($themeName = getThemeName()) {
+        //         $themeName = str_replace('/','.',$themeName);
+        //         $viewFile = "theme::".$themeName.".".$this->viewName;
+        //         if (View::exists($viewFile)) {
+        //             $this->actions['view']['layout'] = $viewFile;
+        //         }
+        //     }
 
-            ## 우선순위4, 페키지 데이터
-            $package = "jiny-profile";
-            $viewFile = $package."::".$this->viewName;
-            if (View::exists($viewFile)) {
-                $this->actions['view']['layout'] = $viewFile;
-            }
+        //     ## 우선순위4, 페키지 데이터
+        //     $package = "jiny-profile";
+        //     $viewFile = $package."::".$this->viewName;
+        //     if (View::exists($viewFile)) {
+        //         $this->actions['view']['layout'] = $viewFile;
+        //     }
 
-        }
+        // }
 
         return parent::index($request);
     }
