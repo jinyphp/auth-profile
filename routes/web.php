@@ -83,6 +83,7 @@ Route::middleware(['web','auth'])
 //,'auth:sanctum'
 Route::middleware(['web']) // , 'verified'
 ->prefix('account')->group(function() {
+
     // 사용자 아이디를 아바타 이미지 출력
     // 도메인/account/avata/{id?} 로 접속시 이미지 출력
     Route::get('avatas/{id?}', [
