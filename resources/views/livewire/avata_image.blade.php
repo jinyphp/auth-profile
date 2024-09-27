@@ -23,7 +23,8 @@
 @endonce
 
     @if($profile && $profile->image)
-        <img src="/account/{{$profile->image}}"
+    {{-- /account/ --}}
+        <img src="{{$profile->image}}"
             class="avata @if($rounded) rounded-circle @endif"/>
     @else
         <div class="avata @if($rounded) rounded-circle @endif bg-gray-300"/>

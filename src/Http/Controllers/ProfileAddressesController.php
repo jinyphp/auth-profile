@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 
 use Jiny\Site\Http\Controllers\SiteController;
-class ProfileAccountController extends SiteController
+class ProfileAddressesController extends SiteController
 {
     public function __construct()
     {
@@ -24,7 +24,8 @@ class ProfileAccountController extends SiteController
 
     public function index(Request $request)
     {
-        $this->setLayout("home.account");
+        $this->setLayout("home.addresses");
+        $this->setLayoutDefault("jiny-profile::home.addresses");
 
         return parent::index($request);
     }

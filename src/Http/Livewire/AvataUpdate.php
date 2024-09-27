@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 
 class AvataUpdate extends Component
 {
+    public $actions = [];
     public $user_id;
 
     use WithFileUploads;
@@ -21,6 +22,9 @@ class AvataUpdate extends Component
         if($user) {
             $this->user_id = $user->id;
         }
+
+        // 파일 업로드할 경로 변경
+        $this->actions['upload']['path'] = "/account/avatas";
     }
 
     public function render()
@@ -30,7 +34,9 @@ class AvataUpdate extends Component
                 ->where('user_id',$this->user_id)
                 ->first();
 
-            return view('jiny-profile::livewire.avata', ['profile'=>$profile]);
+            return view('jiny-profile::livewire.avata', [
+                'profile'=>$profile
+            ]);
         }
 
         return view("jiny-profile::errors.message",[
@@ -48,8 +54,8 @@ class AvataUpdate extends Component
             ]);
 
             // 파일 업로드
-            $filename = $this->photo->store('avatas');
-            $this->filename = $filename;
+            $filename = $this->photo->store($this->actions['upload']['path']);
+            $this->filename = "/".$filename;
         }
     }
 

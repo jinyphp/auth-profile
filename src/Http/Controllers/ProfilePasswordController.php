@@ -13,36 +13,21 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 
-class ProfilePasswordController extends ProfileController
+use Jiny\Site\Http\Controllers\SiteController;
+class ProfilePasswordController extends SiteController
 {
-
-    public $viewName = "home.password";
-
-
     public function __construct()
     {
         parent::__construct();
+        $this->setVisit($this);
     }
 
-    /**
-     * 로그인후 Home 화면입니다.
-     */
-    public function index() {
-        $message = [];
-        $user = Auth::user();
+    public function index(Request $request)
+    {
+        $this->setLayout("home.password");
+        $this->setLayoutDefault("jiny-profile::home.password");
 
-        $viewfile = $this->getViewFile('logout');
-        if($viewfile) {
-            return view($viewfile,[
-                'message' => $message,
-                'user' => $user
-            ]);
-        }
-
-        return "리소스를 찾을 수 없습니다.";
+        return parent::index($request);
     }
-
-
-
 
 }

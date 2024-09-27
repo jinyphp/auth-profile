@@ -13,29 +13,21 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 
-class ProfileAvataController extends ProfileController
+use Jiny\Site\Http\Controllers\SiteController;
+class ProfileAvataController extends SiteController
 {
-    public $viewName = "home.avata";
-
     public function __construct()
     {
         parent::__construct();
+        $this->setVisit($this);
     }
 
-    public function index() {
-        $message = [];
-        $user = Auth::user();
+    public function index(Request $request)
+    {
+        $this->setLayout("home.avata");
+        $this->setLayoutDefault("jiny-profile::home.avata");
 
-        $viewfile = $this->getViewFile('avata');
-        if($viewfile) {
-            return view($viewfile,[
-                'message' => $message,
-                'user' => $user
-            ]);
-        }
-
-        return "리소스를 찾을 수 없습니다.";
+        return parent::index($request);
     }
-
 
 }

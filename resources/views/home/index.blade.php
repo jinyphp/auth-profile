@@ -65,7 +65,14 @@
 
             </div>
         </main>
+
+        <x-set-actions></x-set-actions>
+        <x-site-setting></x-site-setting>
+
     </x-bootstrap>
+
+    {{-- HotKey 단축키 이벤트 --}}
+	@livewire('HotKeyEvent')
 </x-app>
 
 

@@ -4,76 +4,67 @@ use Illuminate\Http\Request;
 
 ## Home Profile 정보
 ## 로그인후 사용자의 정보를 확인할 수 있는 home 화면 입니다.
-Route::get('/home',[
-    \Jiny\Profile\Http\Controllers\HomeController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-
-
-
-
-
-Route::get('/home/profile/avata',[
-    \Jiny\Profile\Http\Controllers\ProfileAvataController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-
-Route::get('/home/profile/account',[
-    \Jiny\Profile\Http\Controllers\ProfileAccountController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-
-/*
-Route::get('/home/profile/info',[
-    \Jiny\Profile\Http\Controllers\ProfileInfoController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-*/
-
-
-Route::get('/home/profile/password',[
-    \Jiny\Profile\Http\Controllers\ProfilePasswordController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-
-Route::get('/home/profile/security',[
-    \Jiny\Profile\Http\Controllers\ProfileSecurityController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-
-Route::get('/home/profile/social',[
-    \Jiny\Profile\Http\Controllers\ProfileSocialController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-
-Route::get('/home/profile/logout',[
-    \Jiny\Profile\Http\Controllers\ProfileLogoutController::class,
-    'index'
-])->middleware(['web', 'auth'])->name('home');
-
-
-
-
+Route::middleware(['web','auth'])
+->name('home')
+->prefix('home')->group(function () {
+    Route::get('/',[
+        \Jiny\Profile\Http\Controllers\HomeController::class,
+        'index'
+    ]);
+});
 
 
 Route::middleware(['web','auth'])
-->prefix('account')->group(function() {
-    Route::get('/', [\Jiny\Profile\Http\Controllers\AccountHome::class, 'index']);
+->name('home.account')
+->prefix('home/account')->group(function () {
+    Route::get('/',[
+        \Jiny\Profile\Http\Controllers\ProfileAccountController::class,
+        'index'
+    ]);
 
-    Route::get('/setting', [\Jiny\Profile\Http\Controllers\AccountSetting::class, 'index']);
+    Route::get('/avata',[
+        \Jiny\Profile\Http\Controllers\ProfileAvataController::class,
+        'index'
+    ]);
 
-    Route::get('/profile', [\Jiny\Profile\Http\Controllers\Profile::class, 'index']);
+    Route::get('/password',[
+        \Jiny\Profile\Http\Controllers\ProfilePasswordController::class,
+        'index'
+    ]);
 
+    Route::get('/social',[
+        \Jiny\Profile\Http\Controllers\ProfileSocialController::class,
+        'index'
+    ]);
 
+    Route::get('/addresses',[
+        \Jiny\Profile\Http\Controllers\ProfileAddressesController::class,
+        'index'
+    ]);
 
+    Route::get('/logout',[
+        \Jiny\Profile\Http\Controllers\ProfileLogoutController::class,
+        'index'
+    ]);
 
-    /*
-    Route::get('profile', 'MypageController@p');
-    Route::get('billing', 'MypageController@billing');
-    Route::get('notifications', 'MypageController@notifications');
-    */
+    Route::get('/security',[
+        \Jiny\Profile\Http\Controllers\ProfileSecurityController::class,
+        'index'
+    ]);
 
 });
+
+
+
+
+// Route::middleware(['web','auth'])
+// ->prefix('account')->group(function() {
+//     Route::get('/', [\Jiny\Profile\Http\Controllers\AccountHome::class, 'index']);
+
+//     Route::get('/setting', [\Jiny\Profile\Http\Controllers\AccountSetting::class, 'index']);
+
+//     Route::get('/profile', [\Jiny\Profile\Http\Controllers\Profile::class, 'index']);
+// });
 
 
 
