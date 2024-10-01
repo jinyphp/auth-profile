@@ -1,6 +1,7 @@
-<x-www-app>
-    <x-www-layout>
-        <x-www-main>
+<x-app>
+    <x-bootstrap>
+
+        <main class="content">
 
             <div class="container p-0">
                 <div class="row">
@@ -63,6 +64,15 @@
                 </div>
 
             </div>
-        </x-www-main>
-    </x-www-layout>
-</x-www-app>
+        </main>
+
+        <x-set-actions></x-set-actions>
+        <x-site-setting></x-site-setting>
+
+    </x-bootstrap>
+
+    {{-- HotKey 단축키 이벤트 --}}
+	@livewire('HotKeyEvent')
+</x-app>
+
+
