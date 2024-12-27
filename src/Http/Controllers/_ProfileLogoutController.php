@@ -30,31 +30,5 @@ class ProfileLogoutController extends SiteController
         return parent::index($request);
     }
 
-    // public $viewName = "home.logout";
-
-
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    // }
-
-    // /**
-    //  * 로그인후 Home 화면입니다.
-    //  */
-    // public function index() {
-    //     $message = [];
-    //     $user = Auth::user();
-
-    //     $viewfile = $this->getViewFile('logout');
-    //     if($viewfile) {
-    //         return view($viewfile,[
-    //             'message' => $message,
-    //             'user' => $user
-    //         ]);
-    //     }
-
-    //     return "리소스를 찾을 수 없습니다.";
-    // }
-
 
 }

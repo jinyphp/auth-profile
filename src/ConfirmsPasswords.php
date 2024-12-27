@@ -1,5 +1,4 @@
 <?php
-
 namespace Jiny\Profile;
 
 use Illuminate\Contracts\Auth\StatefulGuard;

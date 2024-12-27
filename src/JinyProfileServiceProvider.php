@@ -28,6 +28,12 @@ class JinyProfileServiceProvider extends ServiceProvider
         ]);
 
 
+        // 컴포넌트
+        // 사용자 아바타 이미지 출력
+        Blade::component(\Jiny\Profile\View\UserAvata::class, 'user-avata');
+
+
+
         // account layout
         Blade::component($this->package.'::layouts.'.'master', 'account-layout');
         Blade::component($this->package.'::partials.'.'sidebar', 'account-sidebar');
@@ -48,32 +54,20 @@ class JinyProfileServiceProvider extends ServiceProvider
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
 
-            // 아바타의 이미지를 변경합니다.
-            Livewire::component('avata-image', \Jiny\Profile\Http\Livewire\AvataImage::class);
-            Livewire::component('avata-update', \Jiny\Profile\Http\Livewire\AvataUpdate::class);
 
             ## 로그인 상태표시
             Livewire::component('profile-status',
                 \Jiny\Profile\Http\Livewire\ProfileStatus::class);
 
-            // 패스워드 변경
-            Livewire::component('profile-password',
-                \Jiny\Profile\Http\Livewire\ProfilePassword::class);
-            Livewire::component('profile-account', \Jiny\Profile\Http\Livewire\ProfileAccount::class);
-            Livewire::component('profile-address', \Jiny\Profile\Http\Livewire\ProfileAddress::class);
-            Livewire::component('profile-phone', \Jiny\Profile\Http\Livewire\ProfilePhone::class);
-            Livewire::component('profile-email', \Jiny\Profile\Http\Livewire\ProfileEmail::class);
-            Livewire::component('profile-social', \Jiny\Profile\Http\Livewire\ProfileSocial::class);
-
-            Livewire::component('profile-browser-sessions',
-                \Jiny\Profile\Http\Livewire\LogoutOtherBrowserSessionsForm::class);
-
-            Livewire::component('profile.two-factor-authentication-form',
-                \Jiny\Profile\Http\Livewire\TwoFactorAuthenticationForm::class);
 
 
-            // 회원탈퇴
-            Livewire::component('auth-out', \Jiny\Profile\Http\Livewire\AuthOut::class);
+            
+
+            Livewire::component('profile-account',
+                \Jiny\Profile\Http\Livewire\ProfileAccount::class);
+
+
+
 
         });
 

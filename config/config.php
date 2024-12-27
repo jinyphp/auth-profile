@@ -1,5 +1,4 @@
 <?php
-
 return [
     'name' => 'Accounts',
     'views' => [
